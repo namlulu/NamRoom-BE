@@ -20,10 +20,10 @@ export const config = {
   },
   port: parseInt(required('PORT', 8080)),
   db: {
-    host: 'localhost',
-    user: 'root',
-    database: 'NamRoom',
-    password: '134679ad',
+    host: required('DB_HOST'),
+    database: required('DB_DATABASE'),
+    user: required('DB_USER'),
+    password: required('DB_PASSWORD', ''),
   },
   cors: {
     allowedOrigin: required('CORS_ALLOW_ORIGIN'),
