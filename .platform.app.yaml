@@ -32,7 +32,7 @@ relationships:
 
 web:
   commands:
-    start: 'app index.js'
+    start: 'node app.js'
 
   # NGINX
   locations:
