@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import 'express-async-errors';
@@ -16,11 +17,13 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(helmet());
 app.use(
   cors({
     origin: config.cors.allowedOrigin,
     optionsSuccessStatus: 200,
+    credentials: true,
   })
 );
 app.use(morgan('tiny'));

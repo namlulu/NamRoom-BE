@@ -22,7 +22,7 @@ export const signup = async (req, res, next) => {
     url,
   });
   const token = createJwtToken(userId);
-
+  setToken(res, token);
   return res.status(201).json({ token, username });
 };
 
@@ -39,6 +39,7 @@ export const login = async (req, res, next) => {
   }
 
   const token = createJwtToken(user.id);
+  setToken(res, token);
   return res.status(200).json({ token, username });
 };
 
@@ -49,6 +50,17 @@ export const me = async (req, res, next) => {
   }
 
   return res.status(200).json({ token: req.token, username: user.username });
+};
+
+export const setToken = (res, token) => {
+  const options = {
+    maxAge: config.jwt.expiresInSec * 1000,
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
+  };
+
+  res.cookie('token', token, options);
 };
 
 export const createJwtToken = (id) => {
