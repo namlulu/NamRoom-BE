@@ -11,6 +11,7 @@ import authRouter from './router/auth.js';
 import { config } from './config.js';
 import { initSocket } from './connection/socket.js';
 import { sequelize } from './db/database.js';
+import { csrfCheck } from './middleware/csrf.js';
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use(
 );
 app.use(morgan('tiny'));
 
+app.use(csrfCheck);
 app.use('/messages', messagesRouter);
 app.use('/auth', authRouter);
 

@@ -43,6 +43,11 @@ export const login = async (req, res, next) => {
   return res.status(200).json({ token, username });
 };
 
+export const logout = (req, res, next) => {
+  res.cookie('token', '');
+  return res.status(200).json({ message: 'User has been logged out' });
+};
+
 export const me = async (req, res, next) => {
   const user = await userRepository.findById(req.userId);
   if (!user) {
@@ -50,6 +55,11 @@ export const me = async (req, res, next) => {
   }
 
   return res.status(200).json({ token: req.token, username: user.username });
+};
+
+export const csrfToken = async (req, res, next) => {
+  const csrfToken = await generateCSRFToken();
+  return res.status(200).json({ csrfToken });
 };
 
 export const setToken = (res, token) => {
@@ -67,4 +77,8 @@ export const createJwtToken = (id) => {
   return jwt.sign({ id }, config.jwt.secretKey, {
     expiresIn: config.jwt.expiresInSec,
   });
+};
+
+export const generateCSRFToken = () => {
+  return bcrypt.hash(config.csrf.plainToken, 1);
 };

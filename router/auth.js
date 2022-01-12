@@ -34,6 +34,8 @@ const validateSignup = [
 router
   .post('/signup', validateSignup, authController.signup)
   .post('/login', validateCredential, authController.login)
-  .get('/me', isAuth, authController.me);
+  .post('/logout', authController.logout)
+  .get('/me', isAuth, authController.me)
+  .get('/csrf-token', authController.csrfToken);
 
 export default router;
