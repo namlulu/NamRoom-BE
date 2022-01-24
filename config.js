@@ -32,4 +32,7 @@ export const config = {
   csrf: {
     plainToken: required('CSRF_SECRET_KEY'),
   },
+  version: {
+    type: required('VERSION_TYPE', 'PROD'),
+  },
 };
