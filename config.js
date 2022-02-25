@@ -35,4 +35,8 @@ export const config = {
   version: {
     type: required('VERSION_TYPE', 'PROD'),
   },
+  rateLimit: {
+    windowMs: 60000,
+    maxRequest: 100,
+  },
 };
