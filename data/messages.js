@@ -39,7 +39,7 @@ const ORDER_DESC = {
 };
 
 export const getAll = async () => {
-  return await Message.findAll({ ...INCLUDE_USER, ...ORDER_DESC });
+  return await Message.findAll({ ...INCLUDE_USER, ...ORDER_DESC, raw: true });
 };
 
 export const getAllByUsername = async (username) => {
@@ -52,6 +52,7 @@ export const getAllByUsername = async (username) => {
         username,
       },
     },
+    raw: true,
   });
 };
 
