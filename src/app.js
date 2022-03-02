@@ -27,7 +27,7 @@ const corsOption = {
   optionsSuccessStatus: 200,
   credentials: true,
 };
-const openAPIDocument = yaml.load('./api/openapi.yaml');
+const openAPIDocument = yaml.load('./src/api/openapi.yaml');
 
 app.use(express.json());
 app.use(cookieParser());

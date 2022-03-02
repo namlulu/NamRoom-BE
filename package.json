@@ -6,7 +6,7 @@
   "type": "module",
   "author": "namlulu",
   "scripts": {
-    "start": "nodemon app"
+    "start": "concurrently \"tsc -w\" \"nodemon src/app.js\""
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -30,6 +30,7 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "concurrently": "^7.0.0",
     "nodemon": "^2.0.15"
   }
 }
